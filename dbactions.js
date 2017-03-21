@@ -1,6 +1,6 @@
 const mongo = require('mongodb').MongoClient;
 
-const mongoUrl = process.env.MONGOLAB_URI_EXT2;
+const mongoUrl = process.env.MONGOLAB_URI;
 
 // get latest searches from db
 function getLatestSearches() {
