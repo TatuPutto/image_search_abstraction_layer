@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"></link>
+    <title>Image Search Abstraction Layer</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1 class="text-primary" style="padding-bottom:10px;">Image search abstraction layer</h1>
+            <blockquote>
+                1) I can get the image URLs, alt text and page urls for a set of images relating to a given search string.</br>
+                2) I can paginate through the responses by adding a ?offset=&lt;amount&gt; parameter to the URL.</br>
+                3) I can change the amount of shown results by adding a ?num=&lt;amount&gt; parameter to the URL.</br>
+                4) I can get a list of the most recently submitted search strings.
+            </blockquote>
+            <h3>Example usage of image search:</h2>
+            <a href="https://obscure-chamber-54961.herokuapp.com/imagesearch/lolcats%20funny?num=1">
+                    <code>https://obscure-chamber-54961.herokuapp.com/imagesearch/lolcats%20funny</code></a>
+            <h3>Example output:</h2>
+            <code>[{"url":"http://www.lolcats.com/images/u/08/50/lolcatsdotcomrq4lywopmz2tyzsb.jpg","snippet":"Ehh.. A Wize Guy Heh?",
+                    "context":"http://www.lolcats.com/page-6.html","thumbnail":"https://encrypted-tbn3.gstatic.com
+                    /images?q=tbn:ANd9GcRwC1Qu-zMGPmny2gkfRQHiZOy8-Jp46SUBmmuwdfq0yD6J_lBSzt-xBQ"}]</code>
+            <h3>Example usage of listing latest queries:</h2>
+            <a href="https://obscure-chamber-54961.herokuapp.com/latest">
+                    <code>https://obscure-chamber-54961.herokuapp.com/latest</code></a>
+            <h3>Example output:</h2>
+            <code>[{"term":"lolcats funny","when":"2017-03-21T15:26:56.248Z"},
+                    {"term":"cats","when":"2017-03-21T15:26:42.410Z"}]</code>
+        </div>
+    </div>
+</body>
+</html>

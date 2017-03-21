@@ -1,9 +1,10 @@
 const https = require('https');
 const apiKey = process.env.GOOGLE_CUSTOM_SEARCH_API_KEY;
 const cx = process.env.cxId;
+const insertSearch = require('./dbactions').insertSearch;
 
 
-function doSearch(query, offset, num) {
+function doSearch(searchStr, offset, num) {
     // check that offset is within acceptable range
     offset = (typeof offset  !== 'undefined') ?  offset  : 1;
     offset = (offset > 1 || offset < 101) ? offset : 1;
@@ -13,15 +14,16 @@ function doSearch(query, offset, num) {
     num = (num > 0 || num < 11) ? num : 1;
 
     // form url and query string
-    const params = `?key=${apiKey}&cx=${cx}&q=${query}&num=${num}&start=${offset}&searchType=image`;
+    const params = `?key=${apiKey}&cx=${cx}&q=${searchStr}&num=${num}&start=${offset}&searchType=image`;
     const url = 'https://www.googleapis.com/customsearch/v1' + params;
 
     // using Promise to handle async
     return new Promise((resolve, reject) => {
         https.get(url, (res) => {
             if(res.statusCode !== 200)  {
-                return reject(res.statusCode);
+                reject(res.statusCode);
             }
+            insertSearch(searchStr);
 
             res.setEncoding('utf8');
             let data = '';
@@ -38,6 +40,10 @@ function doSearch(query, offset, num) {
 
 
 function extractRelevantInfo(items) {
+    if(items.length === 0) {
+        return [];
+    }
+
     let relevantImageInfo = [];
     for(let i = 0; i < items.length; i++) {
         let imageObj = {};

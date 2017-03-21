@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TatuPutto/image_search_abstraction_layer#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25"
   }
 }
